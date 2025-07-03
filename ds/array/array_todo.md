@@ -7,9 +7,9 @@
 
 ## ✅ Adding / Removing Elements
 
-- [ ] `push()` – Adds elements to the end of the array.
-- [ ] `pop()` – Removes the last element.
-- [ ] `unshift()` – Adds elements to the beginning.
+- [x] `push()` – Adds elements to the end of the array.
+- [x] `pop()` – Removes the last element.
+- [x] `unshift()` – Adds elements to the beginning.
 - [ ] `shift()` – Removes the first element.
 - [ ] `splice()` – Adds/removes elements at a specific index.
 - [ ] `slice()` – Returns a shallow copy of a portion of the array.
