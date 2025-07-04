@@ -1,9 +1,6 @@
 export class MyArray<T> {
   data: T[] = [];
-  size: number = 0;
-  constructor(inputVal: number) {
-    this.size = inputVal;
-  }
+  constructor() {}
 
   get length() {
     let len = 0;
@@ -13,9 +10,23 @@ export class MyArray<T> {
     return len;
   }
 
-  push(val: T): number {
-    const updateIndex = this.length - 1 + 1;
-    this.data[updateIndex] = val;
+  push(...val: T[]): number {
+    // for array
+    const updatedLength = this.length + val.length;
+    const updatedData = [];
+    for (let index = 0; index < updatedLength; index++) {
+      if (index < this.length) {
+        updatedData[index] = this.data[index];
+      } else {
+        updatedData[index] = val[index - this.length];
+      }
+    }
+    this.data = updatedData;
+
+    // for dynamic array
+    // for (const key of val) {
+    //   this.data[this.length] = key;
+    // }
     return this.length;
   }
 
@@ -41,5 +52,30 @@ export class MyArray<T> {
     }
     this.data = updatedData;
     return updatedLength;
+  }
+
+  shift(): T {
+    const lastElement = this.data[0];
+    const updatedData = [];
+    for (let index = 1; index < this.length; index++) {
+      updatedData[index] = this.data[index];
+    }
+    this.data = updatedData;
+    return lastElement;
+  }
+
+  splice(start: number, deleteCount?: number): T[] {
+    const updatedData: T[] = [];
+    const removedElements = [];
+    for (let index = 0; index < start; index++) {
+      removedElements[index] = this.data[index];
+    }
+
+    const updatedLength = deleteCount ? start + deleteCount : this.length;
+    for (let index = start; index < updatedLength; index++) {
+      removedElements[index] = this.data[index];
+    }
+    this.data = updatedData;
+    return removedElements;
   }
 }

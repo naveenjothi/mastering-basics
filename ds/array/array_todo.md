@@ -10,7 +10,7 @@
 - [x] `push()` – Adds elements to the end of the array.
 - [x] `pop()` – Removes the last element.
 - [x] `unshift()` – Adds elements to the beginning.
-- [ ] `shift()` – Removes the first element.
+- [x] `shift()` – Removes the first element.
 - [ ] `splice()` – Adds/removes elements at a specific index.
 - [ ] `slice()` – Returns a shallow copy of a portion of the array.
 - [ ] `concat()` – Merges two or more arrays.
