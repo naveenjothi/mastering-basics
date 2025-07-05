@@ -32,7 +32,7 @@ export class MyArray<T> {
 
   pop(): T {
     const updatedData = [];
-    const lastElement = this.data[-1];
+    const lastElement = this.data[this.length - 1];
     for (let index = 0; index < this.length - 1; index++) {
       updatedData[index] = this.data[index];
     }
@@ -58,24 +58,29 @@ export class MyArray<T> {
     const firstElement = this.data[0];
     const updatedData = [];
     for (let index = 1; index < this.length; index++) {
-      updatedData[index] = this.data[index];
+      updatedData[index - 1] = this.data[index];
     }
     this.data = updatedData;
     return firstElement;
   }
 
-  splice(start: number, deleteCount: number = 0): T[] {
+  splice(start: number, deleteCount?: number): T[] {
+    if (start < 0) {
+      start = this.length + start;
+      if (start < 0) start = 0;
+    }
+
     const updatedData: T[] = [];
     const removedElements: T[] = [];
     let i = 0;
     let j = 0;
+
+    const actualDeleteCount =
+      deleteCount === undefined ? this.length - start : deleteCount;
+
     while (i < this.length) {
-      if (i >= start && !deleteCount) {
-        removedElements[j] = this.data[i];
-        j++;
-      } else if (i >= start && deleteCount + start > i) {
-        removedElements[j] = this.data[i];
-        j++;
+      if (i >= start && actualDeleteCount + start > i) {
+        removedElements[j++] = this.data[i];
       } else {
         updatedData[i - j] = this.data[i];
       }
@@ -85,18 +90,17 @@ export class MyArray<T> {
     return removedElements;
   }
 
-  slice(start: number, end: number = 0): T[] {
+  slice(start: number, end?: number): T[] {
     const copiedElements: T[] = [];
 
     let j = 0;
     let i = 0;
+
+    const actualEnd = end === undefined ? this.length - start : end;
+
     while (i < this.length) {
-      if (i >= start && !end) {
-        copiedElements[j] = this.data[i];
-        j++;
-      } else if (i >= start && end + start > i) {
-        copiedElements[j] = this.data[i];
-        j++;
+      if (i >= start && actualEnd + start > i) {
+        copiedElements[j++] = this.data[i];
       }
       i++;
     }
@@ -104,16 +108,27 @@ export class MyArray<T> {
     return copiedElements;
   }
 
-  concat(items: ConcatArray<T>[]): T[] {
-    const updatedLength = this.length + items.length;
+  concat(...items: ConcatArray<T>[]): T[] {
     const updatedData = [];
-    for (let index = 0; index < updatedLength; index++) {
-      if (index < this.length) {
-        updatedData[index] = this.data[index];
-      } else {
-        updatedData[index] = items[index - this.length] as T;
+    let i = 0;
+    for (let index = 0; index < this.length; index++) {
+      updatedData[i++] = this.data[index];
+    }
+    // flattening arrays
+    for (let index = 0; index < items.length; index++) {
+      const subArr = items[index];
+      for (let j = 0; j < subArr.length; j++) {
+        updatedData[i++] = subArr[j];
       }
     }
     return updatedData;
+  }
+
+  static of<InferedType>(...vals: InferedType[]): MyArray<InferedType> {
+    const newArr = new MyArray<InferedType>();
+    for (let i = 0; i < vals.length; i++) {
+      newArr.data[i] = vals[i];
+    }
+    return newArr;
   }
 }
