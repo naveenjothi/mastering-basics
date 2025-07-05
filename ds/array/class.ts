@@ -55,13 +55,13 @@ export class MyArray<T> {
   }
 
   shift(): T {
-    const lastElement = this.data[0];
+    const firstElement = this.data[0];
     const updatedData = [];
     for (let index = 1; index < this.length; index++) {
       updatedData[index] = this.data[index];
     }
     this.data = updatedData;
-    return lastElement;
+    return firstElement;
   }
 
   splice(start: number, deleteCount: number = 0): T[] {
