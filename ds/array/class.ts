@@ -64,18 +64,56 @@ export class MyArray<T> {
     return lastElement;
   }
 
-  splice(start: number, deleteCount?: number): T[] {
+  splice(start: number, deleteCount: number = 0): T[] {
     const updatedData: T[] = [];
-    const removedElements = [];
-    for (let index = 0; index < start; index++) {
-      removedElements[index] = this.data[index];
-    }
-
-    const updatedLength = deleteCount ? start + deleteCount : this.length;
-    for (let index = start; index < updatedLength; index++) {
-      removedElements[index] = this.data[index];
+    const removedElements: T[] = [];
+    let i = 0;
+    let j = 0;
+    while (i < this.length) {
+      if (i >= start && !deleteCount) {
+        removedElements[j] = this.data[i];
+        j++;
+      } else if (i >= start && deleteCount + start > i) {
+        removedElements[j] = this.data[i];
+        j++;
+      } else {
+        updatedData[i - j] = this.data[i];
+      }
+      i++;
     }
     this.data = updatedData;
     return removedElements;
+  }
+
+  slice(start: number, end: number = 0): T[] {
+    const copiedElements: T[] = [];
+
+    let j = 0;
+    let i = 0;
+    while (i < this.length) {
+      if (i >= start && !end) {
+        copiedElements[j] = this.data[i];
+        j++;
+      } else if (i >= start && end + start > i) {
+        copiedElements[j] = this.data[i];
+        j++;
+      }
+      i++;
+    }
+
+    return copiedElements;
+  }
+
+  concat(items: ConcatArray<T>[]): T[] {
+    const updatedLength = this.length + items.length;
+    const updatedData = [];
+    for (let index = 0; index < updatedLength; index++) {
+      if (index < this.length) {
+        updatedData[index] = this.data[index];
+      } else {
+        updatedData[index] = items[index - this.length] as T;
+      }
+    }
+    return updatedData;
   }
 }
