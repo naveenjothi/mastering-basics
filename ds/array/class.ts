@@ -131,4 +131,26 @@ export class MyArray<T> {
     }
     return newArr;
   }
+
+  static isArray(arg: any): boolean {
+    return typeof arg === "object" && Symbol.iterator in arg;
+  }
+
+  static from<InferedType>(
+    iterable: Iterable<InferedType> | ArrayLike<InferedType>
+  ) {
+    const result = new MyArray<InferedType>();
+
+    if (typeof iterable == "object" && Symbol.iterator in iterable) {
+      for (const item of iterable) {
+        result.push(item);
+      }
+    } else if (typeof iterable == "object" && "length" in iterable) {
+      for (let index = 0; index < iterable.length; index++) {
+        result.push(iterable[index]);
+      }
+    }
+
+    return result;
+  }
 }
