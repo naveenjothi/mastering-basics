@@ -153,4 +153,79 @@ export class MyArray<T> {
 
     return result;
   }
+
+  includes(val: T) {
+    let i = 0;
+
+    while (i < this.length) {
+      if (this.data[i] === val) {
+        return true;
+      }
+      i++;
+    }
+
+    return false;
+  }
+
+  indexOf(val: T): number {
+    let i = 0;
+
+    while (i < this.length) {
+      if (this.data[i] === val) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  lastIndexOf(val: T): number {
+    let i = this.length - 1;
+
+    while (i >= 0) {
+      if (this.data[i] === val) {
+        return i;
+      }
+      i--;
+    }
+    return -1;
+  }
+
+  find(
+    predicate: (value: T, index: number, obj: T[]) => boolean,
+    thisArg?: any
+  ): T | undefined {
+    for (let index = 0; index < this.length; index++) {
+      const currVal = this.data[index];
+      const isMatch = predicate.call(
+        thisArg ?? this,
+        currVal,
+        index,
+        this.data
+      );
+      if (isMatch) {
+        return currVal;
+      }
+    }
+    return undefined;
+  }
+
+  findIndex(
+    predicate: (value: T, index: number, obj: T[]) => boolean,
+    thisArg?: any
+  ): number {
+    for (let index = 0; index < this.length; index++) {
+      const currVal = this.data[index];
+      const isMatch = predicate.call(
+        thisArg ?? this,
+        currVal,
+        index,
+        this.data
+      );
+      if (isMatch) {
+        return index;
+      }
+    }
+    return -1;
+  }
 }
