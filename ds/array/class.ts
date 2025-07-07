@@ -228,4 +228,13 @@ export class MyArray<T> {
     }
     return -1;
   }
+
+  forEach(
+    callbackfn: (value: T, index: number, array: T[]) => void,
+    thisArg?: any
+  ): void {
+    for (let index = 0; index < this.length; index++) {
+      callbackfn.call(thisArg ?? this, this.data[index], index, this.data);
+    }
+  }
 }

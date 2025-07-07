@@ -25,7 +25,7 @@
 
 ## ✅ Iteration
 
-- [ ] `forEach()` – Executes a function for each element.
+- [x] `forEach()` – Executes a function for each element.
 - [ ] `map()` – Creates a new array by applying a function to each element.
 - [ ] `filter()` – Filters elements based on a condition.
 - [ ] `reduce()` – Reduces the array to a single value.
