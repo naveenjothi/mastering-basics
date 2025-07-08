@@ -237,4 +237,110 @@ export class MyArray<T> {
       callbackfn.call(thisArg ?? this, this.data[index], index, this.data);
     }
   }
+
+  map<U>(
+    callbackfn: (value: T, index: number, array: T[]) => U,
+    thisArg?: any
+  ): U[] {
+    const result = [];
+    for (let index = 0; index < this.length; index++) {
+      result[index] = callbackfn.call(
+        thisArg ?? this,
+        this.data[index],
+        index,
+        this.data
+      );
+    }
+    return result;
+  }
+
+  filter(
+    predicate: (value: T, index: number, array: T[]) => T,
+    thisArg?: any
+  ): T[] {
+    const result = [];
+    let i = 0;
+    for (let index = 0; index < this.length; index++) {
+      const isFiltered = predicate.call(
+        thisArg ?? this,
+        this.data[index],
+        index,
+        this.data
+      );
+      if (isFiltered) {
+        result[i++] = this.data[index];
+      }
+    }
+    return result;
+  }
+
+  reduce<U>(
+    callbackfn: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: T[]
+    ) => U,
+    initialValue: U
+  ) {
+    let startIndex = 0;
+    const hasInitialValue = arguments.length > 1;
+    let previousValue: U;
+
+    if (!hasInitialValue) {
+      if (this.length === 0) {
+        throw new TypeError("Reduce of empty array with no initial value");
+      }
+      previousValue = this.data[startIndex] as unknown as U;
+      startIndex++;
+    } else {
+      previousValue = initialValue;
+    }
+
+    for (let index = startIndex; index < this.length; index++) {
+      previousValue = callbackfn(
+        previousValue,
+        this.data[index],
+        index,
+        this.data
+      );
+    }
+    return previousValue;
+  }
+
+  reduceRight<U>(
+    callbackfn: (
+      previousValue: U,
+      currentValue: T,
+      currentIndex: number,
+      array: T[]
+    ) => U,
+    initialValue: U
+  ) {
+    let startIndex = this.length - 1;
+    const hasInitialValue = arguments.length > 1;
+    let previousValue: U;
+
+    if (!hasInitialValue) {
+      if (this.length === 0) {
+        throw new TypeError(
+          "Reduce right of empty array with no initial value"
+        );
+      }
+      previousValue = this.data[startIndex] as unknown as U;
+      startIndex--;
+    } else {
+      previousValue = initialValue;
+    }
+
+    for (let index = startIndex; index >= 0; index--) {
+      previousValue = callbackfn(
+        previousValue,
+        this.data[index],
+        index,
+        this.data
+      );
+    }
+    return previousValue;
+  }
 }

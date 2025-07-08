@@ -26,10 +26,10 @@
 ## ✅ Iteration
 
 - [x] `forEach()` – Executes a function for each element.
-- [ ] `map()` – Creates a new array by applying a function to each element.
-- [ ] `filter()` – Filters elements based on a condition.
-- [ ] `reduce()` – Reduces the array to a single value.
-- [ ] `reduceRight()` – Similar to `reduce()` but from right to left.
+- [x] `map()` – Creates a new array by applying a function to each element.
+- [x] `filter()` – Filters elements based on a condition.
+- [x] `reduce()` – Reduces the array to a single value.
+- [x] `reduceRight()` – Similar to `reduce()` but from right to left.
 - [ ] `some()` – Returns `true` if at least one element passes the condition.
 - [ ] `every()` – Returns `true` if all elements pass the condition.
 - [ ] `flat()` – Flattens nested arrays into a single array.
