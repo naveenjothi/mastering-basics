@@ -30,10 +30,10 @@
 - [x] `filter()` – Filters elements based on a condition.
 - [x] `reduce()` – Reduces the array to a single value.
 - [x] `reduceRight()` – Similar to `reduce()` but from right to left.
-- [ ] `some()` – Returns `true` if at least one element passes the condition.
-- [ ] `every()` – Returns `true` if all elements pass the condition.
-- [ ] `flat()` – Flattens nested arrays into a single array.
-- [ ] `flatMap()` – Maps and flattens one level deep.
+- [x] `some()` – Returns `true` if at least one element passes the condition.
+- [x] `every()` – Returns `true` if all elements pass the condition.
+- [x] `flat()` – Flattens nested arrays into a single array.
+- [x] `flatMap()` – Maps and flattens one level deep.
 
 ## ✅ Sorting & Reordering
 

@@ -343,4 +343,89 @@ export class MyArray<T> {
     }
     return previousValue;
   }
+
+  some(
+    predicate: (value: T, index: number, array: T[]) => boolean,
+    thisArg?: any
+  ): boolean {
+    let isMatched = false;
+
+    for (let index = 0; index < this.length; index++) {
+      isMatched = predicate.call(
+        thisArg ?? this,
+        this.data[index],
+        index,
+        this.data
+      );
+    }
+
+    return isMatched;
+  }
+
+  every(
+    predicate: (value: T, index: number, array: T[]) => boolean,
+    thisArg?: any
+  ) {
+    for (let index = 0; index < this.length; index++) {
+      const isMatching = predicate.call(
+        thisArg ?? this,
+        this.data[index],
+        index,
+        this.data
+      );
+
+      if (!isMatching) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  flat(depth: number = 1) {
+    const result: T[] = [];
+    let i = 0;
+    const flatten = (arr: any[], currentDepth: number) => {
+      for (let index = 0; index < arr.length; index++) {
+        const value = arr[index];
+
+        if (
+          typeof value === "object" &&
+          Symbol.iterator in value &&
+          currentDepth > 0
+        ) {
+          flatten(value, currentDepth - 1);
+        } else {
+          result[i++] = value;
+        }
+      }
+    };
+
+    flatten(this.data, depth);
+    return result;
+  }
+
+  flatMap(
+    callbackfn: (value: T, index: number, array: T[]) => any,
+    thisArg?: any
+  ) {
+    const result: any[] = [];
+    let i = 0;
+    for (let index = 0; index < this.length; index++) {
+      const value = callbackfn.call(
+        thisArg ?? this,
+        this.data[index],
+        index,
+        this.data
+      );
+      if (typeof value === "object" && Symbol.iterator in value) {
+        for (const item of value) {
+          result[i++] = item;
+        }
+      } else {
+        result[i++] = value;
+      }
+    }
+
+    return result;
+  }
 }
