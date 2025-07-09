@@ -38,12 +38,12 @@
 ## ✅ Sorting & Reordering
 
 - [x] `sort()` – Sorts the elements in place.
-- [ ] `reverse()` – Reverses the array in place.
+- [x] `reverse()` – Reverses the array in place.
 
 ## ✅ Conversion & Representation
 
-- [ ] `join()` – Joins elements into a string.
-- [ ] `toString()` – Converts the array to a string.
+- [x] `join()` – Joins elements into a string.
+- [x] `toString()` – Converts the array to a string.
 - [ ] `toLocaleString()` – Converts elements to a locale-sensitive string.
 
 ## ✅ Copy & Fill

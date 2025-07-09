@@ -452,4 +452,27 @@ export class MyArray<T> {
 
     return this.data;
   }
+
+  reverse(): T[] {
+    const result = [];
+    for (let index = this.length - 1; index >= 0; index--) {
+      result[this.length - 1 - index] = this.data[index];
+    }
+    return result;
+  }
+
+  join(separator: string = ","): string {
+    let result = "";
+    for (let index = 0; index < this.length; index++) {
+      result =
+        index == 0
+          ? `${this.data[index]}`
+          : `${result}${separator}${this.data[index]}`;
+    }
+    return result;
+  }
+
+  toString() {
+    return this.join();
+  }
 }
