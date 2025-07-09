@@ -428,4 +428,28 @@ export class MyArray<T> {
 
     return result;
   }
+
+  sort(compareFn?: ((a: T, b: T) => number) | undefined): T[] {
+    const defaultSortFn = (a: any, b: any) => {
+      const strA = String(a);
+      const strB = String(b);
+      return strA > strB ? 1 : strA < strB ? -1 : 0;
+    };
+    const actualCompareFn = compareFn ?? defaultSortFn;
+
+    for (let i = 0; i < this.length - 1; i++) {
+      for (let j = 0; j < this.length - 1 - i; j++) {
+        const a = this.data[j];
+        const b = this.data[j + 1];
+        const order = actualCompareFn(a, b);
+        if (order > 0) {
+          const temp = a;
+          this.data[j] = b;
+          this.data[j + 1] = temp;
+        }
+      }
+    }
+
+    return this.data;
+  }
 }

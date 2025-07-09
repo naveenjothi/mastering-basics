@@ -37,7 +37,7 @@
 
 ## ✅ Sorting & Reordering
 
-- [ ] `sort()` – Sorts the elements in place.
+- [x] `sort()` – Sorts the elements in place.
 - [ ] `reverse()` – Reverses the array in place.
 
 ## ✅ Conversion & Representation
