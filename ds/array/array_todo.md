@@ -44,12 +44,12 @@
 
 - [x] `join()` – Joins elements into a string.
 - [x] `toString()` – Converts the array to a string.
-- [ ] `toLocaleString()` – Converts elements to a locale-sensitive string.
+- [x] `toLocaleString()` – Converts elements to a locale-sensitive string.
 
 ## ✅ Copy & Fill
 
-- [ ] `copyWithin()` – Copies part of the array to another location.
-- [ ] `fill()` – Fills elements with a static value.
+- [x] `copyWithin()` – Copies part of the array to another location.
+- [x] `fill()` – Fills elements with a static value.
 
 ## ✅ Iterators (ES6)
 

@@ -1,4 +1,8 @@
-export class MyArray<T> {
+interface AdditionalType {
+  toLocaleString(): string;
+}
+
+export class MyArray<T extends AdditionalType> {
   data: T[] = [];
   constructor() {}
 
@@ -124,7 +128,9 @@ export class MyArray<T> {
     return updatedData;
   }
 
-  static of<InferedType>(...vals: InferedType[]): MyArray<InferedType> {
+  static of<InferedType extends AdditionalType>(
+    ...vals: InferedType[]
+  ): MyArray<InferedType> {
     const newArr = new MyArray<InferedType>();
     for (let i = 0; i < vals.length; i++) {
       newArr.data[i] = vals[i];
@@ -136,7 +142,7 @@ export class MyArray<T> {
     return typeof arg === "object" && Symbol.iterator in arg;
   }
 
-  static from<InferedType>(
+  static from<InferedType extends AdditionalType>(
     iterable: Iterable<InferedType> | ArrayLike<InferedType>
   ) {
     const result = new MyArray<InferedType>();
@@ -466,13 +472,52 @@ export class MyArray<T> {
     for (let index = 0; index < this.length; index++) {
       result =
         index == 0
-          ? `${this.data[index]}`
-          : `${result}${separator}${this.data[index]}`;
+          ? this.data[index].toString()
+          : `${result}${separator}${this.data[index].toString()}`;
     }
     return result;
   }
 
   toString() {
     return this.join();
+  }
+
+  toLocaleString() {
+    let result = "";
+    for (let index = 0; index < this.length; index++) {
+      result =
+        index == 0
+          ? this.data[index].toLocaleString()
+          : `${result},${this.data[index].toLocaleString()}`;
+    }
+    return result;
+  }
+
+  copyWithin(target: T, start: number, end?: number): T[] {
+    const result: T[] = [];
+    const actualEnd = end ? end : this.length - 1;
+    let targetIdx = 0;
+    for (let index = 0; index < this.length; index++) {
+      const value = this.data[index];
+      if (value == target) {
+        targetIdx = index;
+      }
+      if (index >= start && index <= actualEnd) {
+        result[index - targetIdx] = this.data[index];
+      } else {
+        result[index] = this.data[index];
+      }
+    }
+    this.data = result;
+    return result;
+  }
+
+  fill(value: T, start?: number, end?: number): T[] {
+    const actualStart = start ? start : 0;
+    const actualEnd = end ? end : this.length - 1;
+    for (let index = actualStart; index < actualEnd; index++) {
+      this.data[index] = value;
+    }
+    return this.data;
   }
 }
