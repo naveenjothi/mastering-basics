@@ -53,6 +53,6 @@
 
 ## ✅ Iterators (ES6)
 
-- [ ] `entries()` – Returns key/value pairs iterator.
+- [x] `entries()` – Returns key/value pairs iterator.
 - [ ] `keys()` – Returns an iterator with the keys (indexes).
 - [ ] `values()` – Returns an iterator with the values.

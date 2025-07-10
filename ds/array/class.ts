@@ -520,4 +520,22 @@ export class MyArray<T extends AdditionalType> {
     }
     return this.data;
   }
+
+  entries(): IterableIterator<[number, T]> {
+    let index = 0;
+    const data = this.data;
+
+    return {
+      [Symbol.iterator]: function (): IterableIterator<[number, T]> {
+        return this;
+      },
+      next: function (): IteratorResult<[number, T], any> {
+        if (index < data.length) {
+          return { value: [index, data[index++]], done: false };
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
+  }
 }
