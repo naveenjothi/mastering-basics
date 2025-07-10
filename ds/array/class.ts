@@ -538,4 +538,40 @@ export class MyArray<T extends AdditionalType> {
       },
     };
   }
+
+  keys(): IterableIterator<number> {
+    let index = 0;
+    const data = this.data;
+
+    return {
+      [Symbol.iterator]: function (): IterableIterator<number> {
+        return this;
+      },
+      next: function (): IteratorResult<number> {
+        if (index < data.length) {
+          return { value: index++, done: false };
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
+  }
+
+  values(): IterableIterator<T> {
+    let index = 0;
+    const data = this.data;
+
+    return {
+      [Symbol.iterator]: function (): IterableIterator<T> {
+        return this;
+      },
+      next: function (): IteratorResult<T> {
+        if (index < data.length) {
+          return { value: data[index++], done: false };
+        } else {
+          return { value: undefined, done: true };
+        }
+      },
+    };
+  }
 }
