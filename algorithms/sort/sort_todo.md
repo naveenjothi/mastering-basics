@@ -15,9 +15,9 @@
 
 ### ✅ Day 2: Bubble Sort (15 XP)
 
-- [ ] Understand the algorithm
-- [ ] Dry run with example
-- [ ] Code it in your preferred language (e.g., JS or Go)
+- [x] Understand the algorithm
+- [x] Dry run with example
+- [x] Code it in your preferred language (e.g., JS or Go)
 
 ### ✅ Day 3: Selection Sort (15 XP)
 
