@@ -21,15 +21,15 @@
 
 ### ✅ Day 3: Selection Sort (15 XP)
 
-- [ ] Learn how it works (find min repeatedly)
-- [ ] Compare with Bubble Sort
-- [ ] Implement and test
+- [x] Learn how it works (find min repeatedly)
+- [x] Compare with Bubble Sort
+- [x] Implement and test
 
 ### ✅ Day 4: Insertion Sort (15 XP)
 
-- [ ] Understand how it mimics real-world sorting (like cards)
-- [ ] Implement with dry run
-- [ ] Code it and compare with previous sorts
+- [x] Understand how it mimics real-world sorting (like cards)
+- [x] Implement with dry run
+- [x] Code it and compare with previous sorts
 
 ### ✅ Day 5: Practice Day 1 (20 XP)
 
