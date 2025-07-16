@@ -46,8 +46,8 @@ Each level gives you XP + unlocks concepts and patterns.
 
 **🎮 Tasks (XP: 150):**
 
-- [ ] Valid Parentheses (40 XP)
-- [ ] Remove all adjacent duplicates (Leetcode 1047) (40 XP)
+- [x] Valid Parentheses (40 XP)
+- [x] Remove all adjacent duplicates (Leetcode 1047) (40 XP)
 - [ ] Min Add to Make Parentheses Valid (Leetcode 921) (35 XP)
 - [ ] Backspace String Compare (Leetcode 844) (35 XP)
 
