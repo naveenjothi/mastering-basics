@@ -65,4 +65,75 @@ export class MySinglyLinkedList<T> {
     node.next = value;
     value.next = nextNode;
   }
+
+  deleteFirst() {
+    if (!this.head) {
+      throw new Error("Head is already Empty");
+    }
+
+    this.head = this.head.next;
+  }
+
+  deleteLast() {
+    if (!this.head) {
+      throw new Error("Head is already Empty");
+    }
+
+    if (!this.head.next) {
+      this.head = null;
+      return;
+    }
+
+    let node: MySinglyNode<T> | null = this.head;
+
+    while (node.next && node.next.next) {
+      node = node.next;
+    }
+
+    node.next = null;
+  }
+
+  deleteAt(index: number) {
+    if (index == 0) {
+      this.deleteFirst();
+      return;
+    }
+    let count = 0;
+
+    let node: MySinglyNode<T> | null = this.head;
+
+    while (node?.next && count < index - 1) {
+      node = node.next;
+      count++;
+    }
+
+    if (!node || !node.next) {
+      throw new Error("Index out of bounds");
+    }
+
+    node.next = node.next.next;
+  }
+
+  deleteValue(value: T) {
+    if (!this.head) {
+      throw new Error("List is empty");
+    }
+
+    if (this.head.data === value) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let node: MySinglyNode<T> | null = this.head;
+
+    while (node?.next && node.next.data != value) {
+      node = node.next;
+    }
+
+    if (!node.next) {
+      throw new Error("Value not found in the list");
+    }
+
+    node.next = node.next.next;
+  }
 }
