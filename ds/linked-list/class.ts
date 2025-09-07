@@ -136,4 +136,57 @@ export class MySinglyLinkedList<T> {
 
     node.next = node.next.next;
   }
+
+  search(value: T) {
+    if (!this.head) {
+      throw new Error("List is empty");
+    }
+
+    let index = 0;
+
+    let node: MySinglyNode<T> | null = this.head;
+    while (node) {
+      if (node.data == value) {
+        return index;
+      }
+      node = node.next;
+      index++;
+    }
+
+    return -1;
+  }
+
+  reverse() {
+    if (!this.head) {
+      throw new Error("List is empty");
+    }
+    let currNode: MySinglyNode<T> | null = this.head;
+
+    let prevNode: MySinglyNode<T> | null = null;
+
+    while (currNode) {
+      const nextNode: MySinglyNode<T> | null = currNode.next;
+      currNode.next = prevNode;
+      prevNode = currNode;
+      currNode = nextNode;
+    }
+
+    this.head = prevNode;
+  }
+
+  hasCycle() {
+    if (!this.head || !this.head.next) return false;
+
+    let slow: MySinglyNode<T> | null = this.head;
+    let fast: MySinglyNode<T> | null = this.head;
+
+    while (fast && fast.next) {
+      slow = slow!.next;
+      fast = fast.next?.next;
+
+      if (slow === fast) return true;
+    }
+
+    return false;
+  }
 }
